@@ -7,9 +7,9 @@ const Hero = () => {
           Build your brand's recognition and get detailed insights on how your
           links are performing
         </p>
-        <button className="bg-green-500 text-white px-4 py-2 rounded-lg mt-4">
+        {/* <button className="bg-green-500 text-white px-4 py-2 rounded-lg mt-4">
           Get Started
-        </button>
+        </button> */}
       </div>
       <div className="w-[50%] p-20 h-full"></div>
     </div>
