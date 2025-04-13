@@ -1,4 +1,10 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { setUrlShortenerList } from "../features/urlShortenerSlice";
+import { useDispatch } from "react-redux";
+
+type UrlShortenResponse = {
+  result_url: string;
+};
 
 const backgroundImage = {
   backgroundImage: "url('bg-image.jpg')",
@@ -8,6 +14,7 @@ const backgroundImage = {
 
 const UrlShortener = () => {
   const [url, setUrl] = useState("");
+  const dispatch = useDispatch();
 
   const shortenTheUrl = () => {
     if (url.trim() === "") {
@@ -16,10 +23,12 @@ const UrlShortener = () => {
     }
 
     // Call the API to shorten the URL
-    ulvisShortenApiCall(url)
+    shortenApiCall(url)
       .then((data) => {
         // Handle the response from the API
         console.log(data);
+        const response = data as UrlShortenResponse;
+        dispatch(setUrlShortenerList(response.result_url));
       })
       .catch((error) => {
         // Handle any errors that occurred during the API call
@@ -27,17 +36,14 @@ const UrlShortener = () => {
       });
   };
 
-  const ulvisShortenApiCall = (urlTobeShorten: string) => {
-    // Make the API call to ulvis.net
+  const shortenApiCall = (urlToBeShorten: string) => {
     return new Promise((resolve, reject) => {
-      fetch(`https://ulvis.net/api/v1/shorten`, {
+      fetch(`https://cleanuri.com/api/v1/shorten`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/x-www-form-urlencoded",
         },
-        body: JSON.stringify({
-          url: urlTobeShorten,
-        }),
+        body: new URLSearchParams({ url: urlToBeShorten }),
       })
         .then((response) => response.json())
         .then((data) => {
