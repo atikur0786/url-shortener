@@ -1,22 +1,26 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState = {
+// Define the type for the state
+interface UrlState {
+  urlShortenerList: string[]; // assuming it's a list of shortened URLs
+}
+
+const initialState: UrlState = {
   urlShortenerList: [],
 };
 
+// Create the slice
 export const urlShortenerList = createSlice({
-  name: "urlShortenerList",
+  name: "url",
   initialState,
   reducers: {
-    setUrlShortenerList: (state, action) => {
-      state.urlShortenerList = action.payload;
+    // Define the action with the correct type
+    setUrlShortenerList: (state, action: PayloadAction<string[]>) => {
+      state.urlShortenerList = action.payload; // Set the list of shortened URLs
     },
-    // getUrlShortenerList: (state) => {
-    //   return state.urlShortenerList;
-    // },
   },
 });
 
+// Export the actions and the reducer
 export const { setUrlShortenerList } = urlShortenerList.actions;
-
 export default urlShortenerList.reducer;

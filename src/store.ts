@@ -1,6 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import urlShortenerList from "./features/urlShortenerSlice";
+import urlShortenerListReducer from "./features/urlShortenerSlice";
 
 export const store = configureStore({
-  reducer: urlShortenerList,
+  reducer: {
+    url: urlShortenerListReducer, // Key the reducer to the 'url' slice
+  },
 });

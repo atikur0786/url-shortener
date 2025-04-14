@@ -1,9 +1,12 @@
 import { Copy, FileCheck2 } from "lucide-react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const ShortenerList = () => {
   const [displayTickIcon, setDisplayTickIcon] = useState(false);
   const [copied, setCopied] = useState("");
+
+  /*const [shortenedUrls, setShortenedUrls] = useState([]);
 
   // This component will display the list of shortened URLs
   const shortenedUrls = [
@@ -19,7 +22,9 @@ const ShortenerList = () => {
       originalUrl: "https://www.example.com",
       shortenedUrl: "https://shrtco.de/abcde",
     },
-  ];
+  ];*/
+
+  const shortenedUrls = useSelector((state: any) => state.url.urlShortenerList);
 
   const copyToClipBoard = (url: string) => {
     navigator.clipboard
