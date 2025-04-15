@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-// Define the type for the state
-interface UrlState {
-  urlShortenerList: string[]; // assuming it's a list of shortened URLs
-}
+import { ShortenedUrl, UrlState } from "../types/store";
 
 const initialState: UrlState = {
   urlShortenerList: [],
@@ -15,8 +11,8 @@ export const urlShortenerList = createSlice({
   initialState,
   reducers: {
     // Define the action with the correct type
-    setUrlShortenerList: (state, action: PayloadAction<string[]>) => {
-      state.urlShortenerList = action.payload; // Set the list of shortened URLs
+    setUrlShortenerList: (state, action: PayloadAction<ShortenedUrl>) => {
+      state.urlShortenerList = [...state.urlShortenerList, action.payload];
     },
   },
 });

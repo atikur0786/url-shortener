@@ -3,6 +3,9 @@ import urlShortenerListReducer from "./features/urlShortenerSlice";
 
 export const store = configureStore({
   reducer: {
-    url: urlShortenerListReducer, // Key the reducer to the 'url' slice
+    url: urlShortenerListReducer,
   },
 });
+
+// Export the RootState and AppDispatch types
+export type AppDispatch = typeof store.dispatch;

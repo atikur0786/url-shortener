@@ -1,11 +1,9 @@
 import { useState } from "react";
+import { useAppDispatch } from "../hooks/redux";
 import { setUrlShortenerList } from "../features/urlShortenerSlice";
-import { useDispatch } from "react-redux";
+import { ShortenedUrl, UrlShortenResponse } from "../types/store";
 
-type UrlShortenResponse = {
-  result_url: string;
-};
-
+// Define the background image style
 const backgroundImage = {
   backgroundImage: "url('bg-image.jpg')",
   backgroundSize: "cover",
@@ -14,7 +12,7 @@ const backgroundImage = {
 
 const UrlShortener = () => {
   const [url, setUrl] = useState("");
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const shortenTheUrl = () => {
     if (url.trim() === "") {
@@ -28,7 +26,14 @@ const UrlShortener = () => {
         // Handle the response from the API
         console.log(data);
         const response = data as UrlShortenResponse;
-        dispatch(setUrlShortenerList(response.result_url));
+
+        // Create a shortened URL object
+        const shortenedUrl: ShortenedUrl = {
+          originalUrl: url,
+          shortenedUrl: response.result_url,
+        };
+
+        dispatch(setUrlShortenerList(shortenedUrl));
       })
       .catch((error) => {
         // Handle any errors that occurred during the API call
