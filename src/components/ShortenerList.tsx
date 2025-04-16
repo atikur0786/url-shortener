@@ -1,6 +1,7 @@
 import { Copy, FileCheck2 } from "lucide-react";
 import { useState } from "react";
 import { useAppSelector } from "../hooks/redux";
+import { toast } from "react-toastify";
 
 const ShortenerList = () => {
   const [displayTickIcon, setDisplayTickIcon] = useState(false);
@@ -13,15 +14,16 @@ const ShortenerList = () => {
     navigator.clipboard
       .writeText(url)
       .then(() => {
-        console.log("Copied to clipboard: ", url);
         setCopied(url);
         setDisplayTickIcon(true);
+        toast.success("Copied to clipboard");
         setTimeout(() => {
           setDisplayTickIcon(false);
         }, 2000); // Hide the tick icon after 2 seconds
       })
       .catch((err) => {
         console.error("Failed to copy: ", err);
+        toast.error("Failed to copy");
       });
   };
 

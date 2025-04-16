@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppDispatch } from "../hooks/redux";
 import { setUrlShortenerList } from "../features/urlShortenerSlice";
 import { ShortenedUrl, UrlShortenResponse } from "../types/store";
+import { toast } from "react-toastify";
 
 // Define the background image style
 const backgroundImage = {
@@ -24,9 +25,8 @@ const UrlShortener = () => {
     shortenApiCall(url)
       .then((data) => {
         // Handle the response from the API
-        console.log(data);
         const response = data as UrlShortenResponse;
-
+        toast.success("Shortened URL generated successfully!");
         // Create a shortened URL object
         const shortenedUrl: ShortenedUrl = {
           originalUrl: url,
@@ -38,6 +38,7 @@ const UrlShortener = () => {
       .catch((error) => {
         // Handle any errors that occurred during the API call
         console.error(error);
+        toast.error("Failed to shorten the URL. Please try again later.");
       });
   };
 
