@@ -1,54 +1,88 @@
-# React + TypeScript + Vite
+# 🔗 URL Shortener
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple, elegant URL shortening application built with **React**, **TypeScript**, **Redux**, and **Tailwind CSS**.
 
-Currently, two official plugins are available:
+![Preview](./preview.png) <!-- Replace with your actual image name if different -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Shorten any valid URL with a single click
+- Copy shortened URLs to clipboard with visual feedback
+- Responsive design that works on all devices
+- Persistent storage of shortened URLs
+- Clean, modern UI with Tailwind CSS
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🖥️ Demo
+
+<!-- Add demo link here if deployed -->
+
+---
+
+## 🛠️ Technologies Used
+
+- **React** – UI library for building the interface
+- **TypeScript** – For type-safe code
+- **Redux Toolkit** – For state management
+- **Tailwind CSS** – For styling
+- **Vite** – For fast development and building
+- **CleanURI API** – For URL shortening functionality
+
+---
+
+## 🏗️ Project Structure
+
+url-shortener/
+├── src/
+│ ├── components/
+│ │ ├── ShortenerList.tsx # Displays the list of shortened URLs
+│ │ └── UrlShortener.tsx # Input form for shortening URLs
+│ ├── features/
+│ │ └── urlShortenerSlice.ts # Redux slice for URL state
+│ ├── hooks/
+│ │ └── redux.ts # Custom Redux hooks
+│ ├── types/
+│ │ └── store.ts # TypeScript type definitions
+│ ├── App.tsx # Main application component
+│ ├── main.tsx # Entry point
+│ └── store.ts # Redux store configuration
+├── public/
+│ └── ... # Static assets
+└── ... # Configuration files
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v14 or later)
+- npm or yarn
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/atikur0786/url-shortener.git
+cd url-shortener
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+# or
+yarn
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Start the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
 ```
